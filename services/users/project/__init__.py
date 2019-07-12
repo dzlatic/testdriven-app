@@ -3,15 +3,18 @@
 
 import os
 
-from flask import Flask  # new
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_cors import CORS
 
 
-# instantiate the db
+
+# instantiate the extensions
 db = SQLAlchemy()
+toolbar = DebugToolbarExtension()  # new
+cors = CORS()
 
-
-# new
 def create_app(script_info=None):
 
     # instantiate the app
@@ -23,6 +26,8 @@ def create_app(script_info=None):
 
     # set up extensions
     db.init_app(app)
+    toolbar.init_app(app)
+    cors.init_app(app)
 
     # register blueprints
     from project.api.users import users_blueprint
@@ -34,3 +39,4 @@ def create_app(script_info=None):
         return {'app': app, 'db': db}
 
     return app
+
