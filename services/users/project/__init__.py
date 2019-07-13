@@ -1,6 +1,5 @@
 # services/users/project/__init__.py
 
-
 import os
 
 from flask import Flask
@@ -8,12 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_cors import CORS
 
-
-
 # instantiate the extensions
 db = SQLAlchemy()
-toolbar = DebugToolbarExtension()  # new
+toolbar = DebugToolbarExtension()
 cors = CORS()
+
 
 def create_app(script_info=None):
 
@@ -39,4 +37,3 @@ def create_app(script_info=None):
         return {'app': app, 'db': db}
 
     return app
-
